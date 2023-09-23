@@ -5,7 +5,7 @@ from sentence_transformers import SentenceTransformer, util
 import torch
 import io
 
-openai.api_key = "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"
+openai.api_key = "can't put this on github"
 
 # Initialize recognizer and microphone
 recognizer = sr.Recognizer()
@@ -28,10 +28,9 @@ with sr.Microphone() as source:
 # see if we can improve response time even further by not saving the audio data
 audio_bytes = audio_data.get_wav_data()
 audio_file_like = io.BytesIO(audio_bytes)
-audio_file_like.name = "captured_audio.wav"
+audio_file_like.name = "temp"
 
 # transcribe the saved audio
-audio_file = open("captured_audio.wav", "rb")
 transcript = openai.Audio.transcribe("whisper-1", audio_file_like)
 
 transcript_embedding = model.encode(str(transcript), convert_to_tensor=True)
